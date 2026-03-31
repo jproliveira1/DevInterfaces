@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Configuração de Sensor</title>
+    <link rel="stylesheet" href="cadastro.css">
+  </head>
+  <body>
+    <header>
+      <h1>Painel de Registro Técnico</h1>
+    </header>
+    <main>
+      <form action="#" method="GET">
+        <fieldset>
+          <legend>Credenciais</legend>
+          <label for="user">E-mail:</label>
+          <input type="email" id="user" name="user" required> <br><br>
+        
+          <label for="pass">Senha:</label>
+          <input type="password" id="pass" name="pass" required>
+        </fieldset>
+        <fieldset>
+          <legend>Status da Inspeção</legend>
+          <label for="data">Data da Visita:</label>
+          <input type="date" id="data" name="data" /> <br><br>
+          <label for="cor">Cor do Painel:</label>
+          <input type="color" id="cor" name="cor" /> <br><br>
+          <label for="ruido">Ruído</label>
+          <input type="range" id="ruido" name="ruido" /> <br><br>
+          <label for="prioridade">Prioridade:</label>
+          <input type="radio" id="prioridade" name="prioridade" >
+          <label for="prioridade1">Rotina</label>
+          <input type="radio" id="prioridade2" name="prioridade" >
+          <label for="prioridade2">Urgente</label> <br><br>
+          <label for="pecas">Verificação:</label>
+          <input type="checkbox" id="pecas1" name="pecas1" value="Cabos" />
+          <label for="pecas1">Cabos</label>
+          <input type="checkbox" id="pecas2" name="pecas2" value="Sensores" />
+          <label for="pecas2">Sensores</label>
+          <input type="checkbox" id="pecas3" name="pecas3" value="Estrutura" />
+          <label for="pecas3">Estrutura</label>
+        </fieldset>
+        <button type="submit">Enviar Registro</button>
+        <button type="reset">Limpar Tudo</button>
+      </form>
+    </main>
+  </body>
+</html>
