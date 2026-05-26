@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale01.0">
+    <title>Relatório de Manutenção - Tutorial 05</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Sistema de Auditoria de Segurança</h1>
+    </header>
+
+    <main>
+        <section>
+            <form action="#" method="GET">
+
+                <fieldset>
+                    <legend>Identificação de Equipamento</legend>
+
+                    <label for="id_sensor">ID do Equipamento:</label>
+                    <input type="text" id="id_sensor" name="id_sensor"
+                           required
+                           pattern="[A-Z]{2}-[0-9]{4}"
+                           title="Siga o padrão: Duas letras maiúsculas, traço, quatro números (Ex: SN-2026)"
+                           placeholder="Ex: SN-2026">
+
+                    <span id="feedback-codigo"></span>
+
+                    <label for="pavimento">Categoria de Segurança</label>
+                    <select id="pavimento" name="pavimento" required>
+                        <option value="">Selecione um equipamento...</option>
+
+                        <optgroup label="Grupo EPI">
+                            <option value="linha_a">Capacetes</option>
+                            <option value="linha_b">Luvas</option>
+                        </optgroup>
+
+                        <optgroup label="Grupo EPC">
+                            <option value="escritorio">Cones</option>
+                            <option value="ti_sala">Extintor</option>
+                        </optgroup>
+                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Parecer Técnico</legend>
+
+                    <label for="historico">Relato de Irregularidades</label>
+                    <textarea id="historico" name="historico"
+                              rows="6"
+                              placeholder="Utilize este espaço para descrever as irregularidades encontradas durante a inspeção..."></textarea>
+       
+                </fieldset>
+
+                <div class="acoes">
+                    <button type="submit">Finalizar Auditoria</button>
+                    <button type="reset">Limpar Dados</button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+    
+    <script>
+        const campoCodigo = document.getElementById('id_sensor');
+        const feedback = document.getElementById('feedback-codigo');
+        const formSete = document.querySelector('form');
+        
+        // 1. Validação em tempo real
+        campoCodigo.addEventListener('input', () => {
+            const padrao = /^[A-Z]{2}-[0-9]{4}$/;
+            
+            if (padrao.test(campoCodigo.value)) {
+                campoCodigo.style.borderColor = "#2ecc71"; // Verde (Sucesso)
+                feedback.innerText = "✅ Formato de série válido!";
+                feedback.style.color = "#2ecc71";
+            } else {
+                campoCodigo.style.borderColor = "#e74c3c"; // Vermelho (Erro)
+                feedback.innerText = "❌ Formato esperado: AA-0000";
+                feedback.style.color = "#e74c3c";
+            }
+        });
+        
+        // 2. Modal com Resumo Técnico (Textarea e Selects)
+        formSete.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const categoria = document.querySelector('select').value;
+            const observacoes = document.querySelector('textarea').value;
+            
+            // Aqui reutilizamos a lógica de modal do Tutorial 04, 
+            // mas agora injetando textos longos e seleções de categoria.
+            alert(`Dispositivo Registrado!\nCategoria: ${categoria}\nObservações: ${observacoes}`);
+        });
+        </script>
+        
+</body>
+</html>    
