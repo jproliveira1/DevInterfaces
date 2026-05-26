@@ -1,0 +1,40 @@
+/* 1. Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #e9ecef;
+    display: flex; /* Apenas para centralizar o exemplo */
+    justify-content: center;
+    padding-top: 50px;
+}
+
+/* 2. Estilização do Cartão */
+.cartao {
+    background-color: white;
+    width: 300px;
+    padding: 20px;
+    border-radius: 12px;
+    /* Borda grossa na esquerda (estilo industrial) */
+    border-left: 8px solid #2c3e50;
+    text-align: center; 
+}
+
+/* 3. Tipografia e Cores */
+h1 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.status-online {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+} 

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo Integrado JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+            color: #333;
+        }
+        .painel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 500px;
+        }
+        .sensor-btn {
+            background-color: #e0e0e0;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        /* Classe CSS que o JavaScript vai adicionar */
+        .sensor-btn.ativo {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .status {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="painel">
+        <h2>Painel de Controle de Sensores</h2>
+        <p>Clique nos sensores para ativá-los (e olhe o console F12):</p>
+        
+        <button class="sensor-btn">Cozinha</button>
+        <button class="sensor-btn">Sala</button>
+        <button class="sensor-btn">Quarto</button>
+
+        <div class="status" id="mensagem-status">Nenhum sensor ativo.</div>
+    </div>
+
+    <script>
+        // 1. console.log() - Diagnosticando a inicialização do script
+        console.log("--- Inicializando o Sistema de Sensores ---");
+
+        // 2. CONST e LET (Escopo de bloco)
+        const totalDeTentativas = 3; // Não muda
+        let tentativasAtuais = 0;   // Vai mudar no loop
+
+        // 3. WHILE - Executando um bloco enquanto a condição for real
+        while (tentativasAtuais < totalDeTentativas) {
+            tentativasAtuais++;
+            console.log("Conectando ao servidor... Tentativa " + tentativasAtuais);
+        }
+        console.log("Servidor conectado com sucesso!");
+
+        // 4. ARRAY - Lista de dados organizada por índices
+        const logsDoSistema = ["Inicializado", "Rede OK"];
+        console.log("Histórico atual do sistema:", logsDoSistema);
+
+        // 5. FUNCTION - Um conjunto de instruções para executar uma tarefa
+        function atualizarStatusTela(nomeSensor) {
+            // Acessando o DOM para mudar o texto da página
+            const statusDiv = document.querySelector("#mensagem-status");
+            statusDiv.textContent = "Último evento: " + nomeSensor + " foi ativado!";
+        }
+
+        // 6. document.querySelectorAll() - Seleciona todos os botões e cria uma lista
+        const botoesSensores = document.querySelectorAll(".sensor-btn");
+        console.log("Botões encontrados no DOM:", botoesSensores);
+
+        // 7. FOR - Estrutura clássica de repetição para andar pela lista de botões
+        for (let i = 0; i < botoesSensores.length; i++) {
+            const botaoAtual = botoesSensores[i];
+
+            // 8. EVENT LISTENER - O "vigia" que espera o clique em cada botão
+            botaoAtual.addEventListener("click", function() {
+                console.log("O usuário clicou no botão do índice: " + i);
+
+                // 9. .classList.add() - Adiciona a classe CSS que muda a cor para verde
+                botaoAtual.classList.add("ativo");
+
+                // Executa a função passando o texto de dentro do botão (Cozinha, Sala, etc)
+                atualizarStatusTela(botaoAtual.textContent);
+            });
+        }
+
+        // 10. Perigo da declaração sem prefixo (Comentado para não quebrar o script)
+        // Se fizéssemos a linha abaixo dentro de qualquer função, ela viraria global:
+        // variavelPerigosa = "Cuidado"; 
+    </script>
+</body>
+</html>
